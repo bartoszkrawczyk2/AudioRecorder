@@ -2,7 +2,7 @@
 Recorder for WebAudio API
   
 ## API
-* `new AudioRecorder(audioContext)` - constructor
+* `new AudioRecorder(audioContext)` - initialize
 * `.node` - WebAudio node
 * `.start()` - start capturing audio
 * `.stop()` - stop capturing audio
