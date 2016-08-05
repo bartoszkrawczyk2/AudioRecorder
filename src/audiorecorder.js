@@ -5,8 +5,7 @@
  bartoszkrawczyk.com
  MIT License
 */
-class AudioRecorder {
-
+export default class AudioRecorder {
     constructor(audioContext, bufferSize = 2048, inputChannels = 2, outputChannels = 2) {
         this.bufferSize     = bufferSize;
         this.inputChannels  = inputChannels;
@@ -68,7 +67,7 @@ class AudioRecorder {
             result     = new Float32Array(length),
             inputIndex = 0;
 
-        for (let index = 0; index < length; ){
+        for (let index = 0; index < length; ) {
             result[index++] = leftChannel[inputIndex];
             result[index++] = rightChannel[inputIndex];
             inputIndex++;
@@ -77,15 +76,13 @@ class AudioRecorder {
         return result;
     }
 
-    _writeUTFBytes(view, offset, string) {
-        let lng = string.length;
+    _writeUTFBytes(view, offset, str) {
+        let lng = str.length;
 
         for (let i = 0; i < lng; i++){
-            view.setUint8(offset + i, string.charCodeAt(i));
+            view.setUint8(offset + i, str.charCodeAt(i));
         }
     }
-
-    // -------------------------------------------------------------------------------- public API:
 
     start() {
         this['isRecording'] = true;
@@ -95,7 +92,7 @@ class AudioRecorder {
         this['isRecording'] = false;
     }
 
-    exportWavBlob() {
+    exportWaveBlob() {
         let leftBuffer  = this._mergeBuffers(this['leftChannel'],  this['recordingLength']),
             rightBuffer = this._mergeBuffers(this['rightChannel'], this['recordingLength']),
             interleaved = this._interleave(leftBuffer, rightBuffer),
@@ -131,5 +128,3 @@ class AudioRecorder {
         return new Blob ( [ view ], { type : 'audio/wav' } );
     }
 }
-
-export default AudioRecorder;

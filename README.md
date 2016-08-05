@@ -1,17 +1,21 @@
 # AudioRecorder
 Recorder for WebAudio API
+
+## Install
+
+`npm install audiorecorder --save`
   
 ## API
 * `new AudioRecorder(audioContext)` - initialize
 * `.node` - WebAudio node
 * `.start()` - start capturing audio
 * `.stop()` - stop capturing audio
-* `.exportWavBlob()` returns WAVE file
+* `.exportWaveBlob()` returns WAVE file
 
 ## Usage
-Example usage:
+Example usage (record 5 seconds of user stream):
 ```js
-import AudioRecorder from 'audioRecorder';
+import AudioRecorder from 'audiorecorder';
 import { saveAs } from 'filesaver.js';
 
 let ctx = new (window.AudioContext || window.webkitAudioContext || window.mozAudioContext)();
@@ -31,10 +35,13 @@ navigator.getUserMedia({ audio: true }, (e) => {
 
         let recorded = audioRecorder.exportWavBlob();
         saveAs(recorded, 'recorded.wav');
-    }, 5000)
+    }, 5000);
 
 
 }, (e) => {
     console.log('error');
 });
 ```
+## License
+
+MIT
