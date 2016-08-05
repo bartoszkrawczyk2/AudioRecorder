@@ -1,6 +1,6 @@
 {
   "name": "audiorecorder",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Recorder for WebAudio API",
   "main": "lib/audiorecorder.js",
   "scripts": {
